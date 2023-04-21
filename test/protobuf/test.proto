@@ -1,0 +1,63 @@
+// 生成.cc文件方法: protoc test.proto --cpp_out= 存放.cc的目录
+
+syntax = "proto3";
+
+package fixbug;
+
+// 定义下面的选项，表示生成service服务类和rpc方法描述，默认不生成
+option cc_generic_services = true;
+
+//protobuf存储的数据类型: 数据 列表 映射表
+
+message ResultCode
+{
+    int32 errcode = 1;
+    bytes errmsg = 2;
+}
+
+message LoginReuest
+{
+    bytes name = 1;
+    bytes pwd = 2;
+    // map<int32, string> test = 3;
+}
+
+message LoginResponse
+{
+    ResultCode result = 1;
+    bool success = 3;
+}
+
+message GetFriendListsRequest
+{
+    uint32 userid = 1;
+}
+
+message user
+{
+    bytes name = 1;
+    uint32 age = 2;
+    enum Sex
+    {
+        MAN = 0;
+        WOMAN = 1;
+    }
+    Sex sex = 3;
+}
+
+message GetFriendListsResponse
+{
+    ResultCode result = 1;
+    repeated user friend_lists = 2;    // 定义一个列表类型
+}
+
+// 在protobuf中如何定义描述rpc方法的类型
+service UserServiceRpc
+{
+    rpc Login(LoginReuest) returns(LoginResponse);
+    rpc GetFriendLists(GetFriendListsRequest) returns(GetFriendListsResponse);
+}
+
+// message定义的类型主要用于rpc方法参数的一个序列化和反序列化
+// rpc服务提供者（服务方可以理解为Client）：
+// rpc服务消费者（调用方 _Stub，可以理解为Server）:继承RpcChannel，重写CallMethod在这个函数里面进行rpc方法的序列化
