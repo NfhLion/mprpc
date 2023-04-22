@@ -1,5 +1,7 @@
 #pragma once
 
+#include "mprpcconfig.h"
+
 // mprpc的基础类
 class MprpcApplication {
 public:
@@ -8,6 +10,7 @@ public:
     static MprpcApplication& GetInstance();
 
 private:
+    static MprpcConfig m_config;
     MprpcApplication() {};
     MprpcApplication(const MprpcApplication&) = delete;
     MprpcApplication(MprpcApplication&&) = delete;

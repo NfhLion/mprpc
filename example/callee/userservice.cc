@@ -41,7 +41,7 @@ public:
 };
 
 int main(int argc, char* argv[]) {
-    // 框架初始化
+    // 框架初始化: provider -i config
     MprpcApplication::Init(argc, argv);
 
     RpcProvider provider;
