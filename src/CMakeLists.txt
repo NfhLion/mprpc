@@ -1,4 +1,5 @@
 set(SRC_LIST mprpcapplication.cc
+             rpcheader.pb.cc
              rpcprovider.cc
              mprpcconfig.cc)
 
