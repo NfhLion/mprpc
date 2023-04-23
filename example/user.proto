@@ -4,11 +4,7 @@ package fixbug;
 
 option cc_generic_services = true;
 
-message ResultCode
-{
-    int32 errcode = 1;
-    bytes errmsg = 2;
-}
+import "publictype.proto";
 
 message LoginRequest
 {
