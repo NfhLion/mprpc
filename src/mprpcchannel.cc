@@ -38,7 +38,7 @@
     if (rpcHeader.SerializeToString(&rpc_header_str)) {
         header_size = rpc_header_str.size();
     } else {
-        std::cout << "serialize rpc header error" << std::endl;
+        controller->SetFailed("serialize rpc header error");
         return;
     }
 
@@ -52,8 +52,8 @@
 
     int clientfd = socket(AF_INET, SOCK_STREAM, 0);
     if (-1 == clientfd) {
-        std::cout << "create socket error!" << std::endl;
-        exit(EXIT_FAILURE);
+        controller->SetFailed("create socket error");
+        return;
     }
 
     std::string ip = MprpcApplication::GetInstance().GetConfig().Load("rpcserverip");
@@ -64,14 +64,18 @@
     server_addr.sin_addr.s_addr = inet_addr(ip.c_str());
 
     if (-1 == connect(clientfd, (struct sockaddr*)&server_addr, sizeof(server_addr))) {
-        std::cout << "connet error! error: " << errno << std::endl;
+        char errtxt[512] = "\0";
+        sprintf(errtxt, "connet error! error: %d", errno);
+        controller->SetFailed(errtxt);
         close(clientfd);
-        exit(EXIT_FAILURE);
+        return;
     }
 
     // 发送rpc请求
     if (-1 == send(clientfd, send_rpc_str.c_str(), send_rpc_str.size(), 0)) {
-        std::cout << "send error! error: " << errno << std::endl;
+        char errtxt[512] = "\0";
+        sprintf(errtxt, "send error! error: %d", errno);
+        controller->SetFailed(errtxt);
         close(clientfd);
         return;
     }
@@ -80,14 +84,18 @@
     char recv_buf[1024] = "\0";
     int recv_size = 0;
     if (-1 == (recv_size = recv(clientfd, recv_buf, 1024, 0))) {
-        std::cout << "recv error! error: " << errno << std::endl;
+        char errtxt[512] = "\0";
+        sprintf(errtxt, "recv error! error: %d", errno);
+        controller->SetFailed(errtxt);
         close(clientfd);
         return;
     }
 
     std::string response_str(recv_buf, 0, recv_size);
     if (!response->ParseFromArray(recv_buf, recv_size)) {
-        std::cout << "parse error! recv_buf: " << recv_buf << std::endl;
+        char errtxt[512] = "\0";
+        sprintf(errtxt, "parse error! recv_buf: %s", recv_buf);
+        controller->SetFailed(errtxt);
     }
     close(clientfd);
     return;

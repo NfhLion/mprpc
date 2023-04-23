@@ -2,6 +2,7 @@ set(SRC_LIST mprpcapplication.cc
              rpcheader.pb.cc
              rpcprovider.cc
              mprpcconfig.cc
+             mprpccontroller.cc
              mprpcchannel.cc)
 
 add_library(mprpc ${SRC_LIST})
