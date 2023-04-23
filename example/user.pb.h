@@ -56,19 +56,19 @@ struct TableStruct_user_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_user_2eproto;
 namespace fixbug {
+class LoginRequest;
+class LoginRequestDefaultTypeInternal;
+extern LoginRequestDefaultTypeInternal _LoginRequest_default_instance_;
 class LoginResponse;
 class LoginResponseDefaultTypeInternal;
 extern LoginResponseDefaultTypeInternal _LoginResponse_default_instance_;
-class LoginReuest;
-class LoginReuestDefaultTypeInternal;
-extern LoginReuestDefaultTypeInternal _LoginReuest_default_instance_;
 class ResultCode;
 class ResultCodeDefaultTypeInternal;
 extern ResultCodeDefaultTypeInternal _ResultCode_default_instance_;
 }  // namespace fixbug
 PROTOBUF_NAMESPACE_OPEN
+template<> ::fixbug::LoginRequest* Arena::CreateMaybeMessage<::fixbug::LoginRequest>(Arena*);
 template<> ::fixbug::LoginResponse* Arena::CreateMaybeMessage<::fixbug::LoginResponse>(Arena*);
-template<> ::fixbug::LoginReuest* Arena::CreateMaybeMessage<::fixbug::LoginReuest>(Arena*);
 template<> ::fixbug::ResultCode* Arena::CreateMaybeMessage<::fixbug::ResultCode>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace fixbug {
@@ -221,23 +221,23 @@ class ResultCode :
 };
 // -------------------------------------------------------------------
 
-class LoginReuest :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:fixbug.LoginReuest) */ {
+class LoginRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:fixbug.LoginRequest) */ {
  public:
-  LoginReuest();
-  virtual ~LoginReuest();
+  LoginRequest();
+  virtual ~LoginRequest();
 
-  LoginReuest(const LoginReuest& from);
-  LoginReuest(LoginReuest&& from) noexcept
-    : LoginReuest() {
+  LoginRequest(const LoginRequest& from);
+  LoginRequest(LoginRequest&& from) noexcept
+    : LoginRequest() {
     *this = ::std::move(from);
   }
 
-  inline LoginReuest& operator=(const LoginReuest& from) {
+  inline LoginRequest& operator=(const LoginRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline LoginReuest& operator=(LoginReuest&& from) noexcept {
+  inline LoginRequest& operator=(LoginRequest&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -255,37 +255,37 @@ class LoginReuest :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const LoginReuest& default_instance();
+  static const LoginRequest& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const LoginReuest* internal_default_instance() {
-    return reinterpret_cast<const LoginReuest*>(
-               &_LoginReuest_default_instance_);
+  static inline const LoginRequest* internal_default_instance() {
+    return reinterpret_cast<const LoginRequest*>(
+               &_LoginRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(LoginReuest& a, LoginReuest& b) {
+  friend void swap(LoginRequest& a, LoginRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(LoginReuest* other) {
+  inline void Swap(LoginRequest* other) {
     if (other == this) return;
     InternalSwap(other);
   }
 
   // implements Message ----------------------------------------------
 
-  inline LoginReuest* New() const final {
-    return CreateMaybeMessage<LoginReuest>(nullptr);
+  inline LoginRequest* New() const final {
+    return CreateMaybeMessage<LoginRequest>(nullptr);
   }
 
-  LoginReuest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<LoginReuest>(arena);
+  LoginRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<LoginRequest>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const LoginReuest& from);
-  void MergeFrom(const LoginReuest& from);
+  void CopyFrom(const LoginRequest& from);
+  void MergeFrom(const LoginRequest& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -299,10 +299,10 @@ class LoginReuest :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(LoginReuest* other);
+  void InternalSwap(LoginRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "fixbug.LoginReuest";
+    return "fixbug.LoginRequest";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -362,7 +362,7 @@ class LoginReuest :
   std::string* _internal_mutable_pwd();
   public:
 
-  // @@protoc_insertion_point(class_scope:fixbug.LoginReuest)
+  // @@protoc_insertion_point(class_scope:fixbug.LoginRequest)
  private:
   class _Internal;
 
@@ -533,7 +533,7 @@ class UserServiceRpc : public ::PROTOBUF_NAMESPACE_ID::Service {
   static const ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor* descriptor();
 
   virtual void Login(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
-                       const ::fixbug::LoginReuest* request,
+                       const ::fixbug::LoginRequest* request,
                        ::fixbug::LoginResponse* response,
                        ::google::protobuf::Closure* done);
 
@@ -566,7 +566,7 @@ class UserServiceRpc_Stub : public UserServiceRpc {
   // implements UserServiceRpc ------------------------------------------
 
   void Login(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
-                       const ::fixbug::LoginReuest* request,
+                       const ::fixbug::LoginRequest* request,
                        ::fixbug::LoginResponse* response,
                        ::google::protobuf::Closure* done);
  private:
@@ -669,126 +669,126 @@ inline void ResultCode::set_allocated_errmsg(std::string* errmsg) {
 
 // -------------------------------------------------------------------
 
-// LoginReuest
+// LoginRequest
 
 // bytes name = 1;
-inline void LoginReuest::clear_name() {
+inline void LoginRequest::clear_name() {
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline const std::string& LoginReuest::name() const {
-  // @@protoc_insertion_point(field_get:fixbug.LoginReuest.name)
+inline const std::string& LoginRequest::name() const {
+  // @@protoc_insertion_point(field_get:fixbug.LoginRequest.name)
   return _internal_name();
 }
-inline void LoginReuest::set_name(const std::string& value) {
+inline void LoginRequest::set_name(const std::string& value) {
   _internal_set_name(value);
-  // @@protoc_insertion_point(field_set:fixbug.LoginReuest.name)
+  // @@protoc_insertion_point(field_set:fixbug.LoginRequest.name)
 }
-inline std::string* LoginReuest::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:fixbug.LoginReuest.name)
+inline std::string* LoginRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:fixbug.LoginRequest.name)
   return _internal_mutable_name();
 }
-inline const std::string& LoginReuest::_internal_name() const {
+inline const std::string& LoginRequest::_internal_name() const {
   return name_.GetNoArena();
 }
-inline void LoginReuest::_internal_set_name(const std::string& value) {
+inline void LoginRequest::_internal_set_name(const std::string& value) {
   
   name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
-inline void LoginReuest::set_name(std::string&& value) {
+inline void LoginRequest::set_name(std::string&& value) {
   
   name_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:fixbug.LoginReuest.name)
+  // @@protoc_insertion_point(field_set_rvalue:fixbug.LoginRequest.name)
 }
-inline void LoginReuest::set_name(const char* value) {
+inline void LoginRequest::set_name(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:fixbug.LoginReuest.name)
+  // @@protoc_insertion_point(field_set_char:fixbug.LoginRequest.name)
 }
-inline void LoginReuest::set_name(const void* value, size_t size) {
+inline void LoginRequest::set_name(const void* value, size_t size) {
   
   name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:fixbug.LoginReuest.name)
+  // @@protoc_insertion_point(field_set_pointer:fixbug.LoginRequest.name)
 }
-inline std::string* LoginReuest::_internal_mutable_name() {
+inline std::string* LoginRequest::_internal_mutable_name() {
   
   return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline std::string* LoginReuest::release_name() {
-  // @@protoc_insertion_point(field_release:fixbug.LoginReuest.name)
+inline std::string* LoginRequest::release_name() {
+  // @@protoc_insertion_point(field_release:fixbug.LoginRequest.name)
   
   return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline void LoginReuest::set_allocated_name(std::string* name) {
+inline void LoginRequest::set_allocated_name(std::string* name) {
   if (name != nullptr) {
     
   } else {
     
   }
   name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
-  // @@protoc_insertion_point(field_set_allocated:fixbug.LoginReuest.name)
+  // @@protoc_insertion_point(field_set_allocated:fixbug.LoginRequest.name)
 }
 
 // bytes pwd = 2;
-inline void LoginReuest::clear_pwd() {
+inline void LoginRequest::clear_pwd() {
   pwd_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline const std::string& LoginReuest::pwd() const {
-  // @@protoc_insertion_point(field_get:fixbug.LoginReuest.pwd)
+inline const std::string& LoginRequest::pwd() const {
+  // @@protoc_insertion_point(field_get:fixbug.LoginRequest.pwd)
   return _internal_pwd();
 }
-inline void LoginReuest::set_pwd(const std::string& value) {
+inline void LoginRequest::set_pwd(const std::string& value) {
   _internal_set_pwd(value);
-  // @@protoc_insertion_point(field_set:fixbug.LoginReuest.pwd)
+  // @@protoc_insertion_point(field_set:fixbug.LoginRequest.pwd)
 }
-inline std::string* LoginReuest::mutable_pwd() {
-  // @@protoc_insertion_point(field_mutable:fixbug.LoginReuest.pwd)
+inline std::string* LoginRequest::mutable_pwd() {
+  // @@protoc_insertion_point(field_mutable:fixbug.LoginRequest.pwd)
   return _internal_mutable_pwd();
 }
-inline const std::string& LoginReuest::_internal_pwd() const {
+inline const std::string& LoginRequest::_internal_pwd() const {
   return pwd_.GetNoArena();
 }
-inline void LoginReuest::_internal_set_pwd(const std::string& value) {
+inline void LoginRequest::_internal_set_pwd(const std::string& value) {
   
   pwd_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
-inline void LoginReuest::set_pwd(std::string&& value) {
+inline void LoginRequest::set_pwd(std::string&& value) {
   
   pwd_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:fixbug.LoginReuest.pwd)
+  // @@protoc_insertion_point(field_set_rvalue:fixbug.LoginRequest.pwd)
 }
-inline void LoginReuest::set_pwd(const char* value) {
+inline void LoginRequest::set_pwd(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   pwd_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:fixbug.LoginReuest.pwd)
+  // @@protoc_insertion_point(field_set_char:fixbug.LoginRequest.pwd)
 }
-inline void LoginReuest::set_pwd(const void* value, size_t size) {
+inline void LoginRequest::set_pwd(const void* value, size_t size) {
   
   pwd_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:fixbug.LoginReuest.pwd)
+  // @@protoc_insertion_point(field_set_pointer:fixbug.LoginRequest.pwd)
 }
-inline std::string* LoginReuest::_internal_mutable_pwd() {
+inline std::string* LoginRequest::_internal_mutable_pwd() {
   
   return pwd_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline std::string* LoginReuest::release_pwd() {
-  // @@protoc_insertion_point(field_release:fixbug.LoginReuest.pwd)
+inline std::string* LoginRequest::release_pwd() {
+  // @@protoc_insertion_point(field_release:fixbug.LoginRequest.pwd)
   
   return pwd_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline void LoginReuest::set_allocated_pwd(std::string* pwd) {
+inline void LoginRequest::set_allocated_pwd(std::string* pwd) {
   if (pwd != nullptr) {
     
   } else {
     
   }
   pwd_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), pwd);
-  // @@protoc_insertion_point(field_set_allocated:fixbug.LoginReuest.pwd)
+  // @@protoc_insertion_point(field_set_allocated:fixbug.LoginRequest.pwd)
 }
 
 // -------------------------------------------------------------------

@@ -20,7 +20,7 @@ public:
      * 重写基类UserServiceRpc的虚函数
     */
     virtual void Login(::google::protobuf::RpcController* controller,
-                       const ::fixbug::LoginReuest* request,
+                       const ::fixbug::LoginRequest* request,
                        ::fixbug::LoginResponse* response,
                        ::google::protobuf::Closure* done)
     {

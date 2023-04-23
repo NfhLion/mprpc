@@ -20,15 +20,29 @@ class ResultCodeDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ResultCode> _instance;
 } _ResultCode_default_instance_;
-class LoginReuestDefaultTypeInternal {
+class LoginRequestDefaultTypeInternal {
  public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<LoginReuest> _instance;
-} _LoginReuest_default_instance_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<LoginRequest> _instance;
+} _LoginRequest_default_instance_;
 class LoginResponseDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<LoginResponse> _instance;
 } _LoginResponse_default_instance_;
 }  // namespace fixbug
+static void InitDefaultsscc_info_LoginRequest_user_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::fixbug::_LoginRequest_default_instance_;
+    new (ptr) ::fixbug::LoginRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::fixbug::LoginRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_LoginRequest_user_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_LoginRequest_user_2eproto}, {}};
+
 static void InitDefaultsscc_info_LoginResponse_user_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -43,20 +57,6 @@ static void InitDefaultsscc_info_LoginResponse_user_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_LoginResponse_user_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_LoginResponse_user_2eproto}, {
       &scc_info_ResultCode_user_2eproto.base,}};
-
-static void InitDefaultsscc_info_LoginReuest_user_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::fixbug::_LoginReuest_default_instance_;
-    new (ptr) ::fixbug::LoginReuest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::fixbug::LoginReuest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_LoginReuest_user_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_LoginReuest_user_2eproto}, {}};
 
 static void InitDefaultsscc_info_ResultCode_user_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -85,12 +85,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_user_2eproto::offsets[] PROTOB
   PROTOBUF_FIELD_OFFSET(::fixbug::ResultCode, errcode_),
   PROTOBUF_FIELD_OFFSET(::fixbug::ResultCode, errmsg_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::fixbug::LoginReuest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::fixbug::LoginRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::fixbug::LoginReuest, name_),
-  PROTOBUF_FIELD_OFFSET(::fixbug::LoginReuest, pwd_),
+  PROTOBUF_FIELD_OFFSET(::fixbug::LoginRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::fixbug::LoginRequest, pwd_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::fixbug::LoginResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -101,36 +101,36 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_user_2eproto::offsets[] PROTOB
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::fixbug::ResultCode)},
-  { 7, -1, sizeof(::fixbug::LoginReuest)},
+  { 7, -1, sizeof(::fixbug::LoginRequest)},
   { 14, -1, sizeof(::fixbug::LoginResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::fixbug::_ResultCode_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::fixbug::_LoginReuest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::fixbug::_LoginRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::fixbug::_LoginResponse_default_instance_),
 };
 
 const char descriptor_table_protodef_user_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\nuser.proto\022\006fixbug\"-\n\nResultCode\022\017\n\007er"
-  "rcode\030\001 \001(\005\022\016\n\006errmsg\030\002 \001(\014\"(\n\013LoginReue"
-  "st\022\014\n\004name\030\001 \001(\014\022\013\n\003pwd\030\002 \001(\014\"D\n\rLoginRe"
-  "sponse\022\"\n\006result\030\001 \001(\0132\022.fixbug.ResultCo"
-  "de\022\017\n\007success\030\003 \001(\0102E\n\016UserServiceRpc\0223\n"
-  "\005Login\022\023.fixbug.LoginReuest\032\025.fixbug.Log"
-  "inResponseB\003\200\001\001b\006proto3"
+  "rcode\030\001 \001(\005\022\016\n\006errmsg\030\002 \001(\014\")\n\014LoginRequ"
+  "est\022\014\n\004name\030\001 \001(\014\022\013\n\003pwd\030\002 \001(\014\"D\n\rLoginR"
+  "esponse\022\"\n\006result\030\001 \001(\0132\022.fixbug.ResultC"
+  "ode\022\017\n\007success\030\003 \001(\0102F\n\016UserServiceRpc\0224"
+  "\n\005Login\022\024.fixbug.LoginRequest\032\025.fixbug.L"
+  "oginResponseB\003\200\001\001b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_user_2eproto_deps[1] = {
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_user_2eproto_sccs[3] = {
+  &scc_info_LoginRequest_user_2eproto.base,
   &scc_info_LoginResponse_user_2eproto.base,
-  &scc_info_LoginReuest_user_2eproto.base,
   &scc_info_ResultCode_user_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_user_2eproto_once;
 static bool descriptor_table_user_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_user_2eproto = {
-  &descriptor_table_user_2eproto_initialized, descriptor_table_protodef_user_2eproto, "user.proto", 263,
+  &descriptor_table_user_2eproto_initialized, descriptor_table_protodef_user_2eproto, "user.proto", 265,
   &descriptor_table_user_2eproto_once, descriptor_table_user_2eproto_sccs, descriptor_table_user_2eproto_deps, 3, 0,
   schemas, file_default_instances, TableStruct_user_2eproto::offsets,
   file_level_metadata_user_2eproto, 3, file_level_enum_descriptors_user_2eproto, file_level_service_descriptors_user_2eproto,
@@ -363,18 +363,18 @@ void ResultCode::InternalSwap(ResultCode* other) {
 
 // ===================================================================
 
-void LoginReuest::InitAsDefaultInstance() {
+void LoginRequest::InitAsDefaultInstance() {
 }
-class LoginReuest::_Internal {
+class LoginRequest::_Internal {
  public:
 };
 
-LoginReuest::LoginReuest()
+LoginRequest::LoginRequest()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:fixbug.LoginReuest)
+  // @@protoc_insertion_point(constructor:fixbug.LoginRequest)
 }
-LoginReuest::LoginReuest(const LoginReuest& from)
+LoginRequest::LoginRequest(const LoginRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
@@ -386,36 +386,36 @@ LoginReuest::LoginReuest(const LoginReuest& from)
   if (!from._internal_pwd().empty()) {
     pwd_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.pwd_);
   }
-  // @@protoc_insertion_point(copy_constructor:fixbug.LoginReuest)
+  // @@protoc_insertion_point(copy_constructor:fixbug.LoginRequest)
 }
 
-void LoginReuest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_LoginReuest_user_2eproto.base);
+void LoginRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_LoginRequest_user_2eproto.base);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   pwd_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
-LoginReuest::~LoginReuest() {
-  // @@protoc_insertion_point(destructor:fixbug.LoginReuest)
+LoginRequest::~LoginRequest() {
+  // @@protoc_insertion_point(destructor:fixbug.LoginRequest)
   SharedDtor();
 }
 
-void LoginReuest::SharedDtor() {
+void LoginRequest::SharedDtor() {
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   pwd_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
-void LoginReuest::SetCachedSize(int size) const {
+void LoginRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const LoginReuest& LoginReuest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_LoginReuest_user_2eproto.base);
+const LoginRequest& LoginRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_LoginRequest_user_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void LoginReuest::Clear() {
-// @@protoc_insertion_point(message_clear_start:fixbug.LoginReuest)
+void LoginRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:fixbug.LoginRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -425,7 +425,7 @@ void LoginReuest::Clear() {
   _internal_metadata_.Clear();
 }
 
-const char* LoginReuest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* LoginRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
@@ -468,9 +468,9 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* LoginReuest::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* LoginRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:fixbug.LoginReuest)
+  // @@protoc_insertion_point(serialize_to_array_start:fixbug.LoginRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -490,12 +490,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:fixbug.LoginReuest)
+  // @@protoc_insertion_point(serialize_to_array_end:fixbug.LoginRequest)
   return target;
 }
 
-size_t LoginReuest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:fixbug.LoginReuest)
+size_t LoginRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:fixbug.LoginRequest)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -525,23 +525,23 @@ size_t LoginReuest::ByteSizeLong() const {
   return total_size;
 }
 
-void LoginReuest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:fixbug.LoginReuest)
+void LoginRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:fixbug.LoginRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  const LoginReuest* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<LoginReuest>(
+  const LoginRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<LoginRequest>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:fixbug.LoginReuest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:fixbug.LoginRequest)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:fixbug.LoginReuest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:fixbug.LoginRequest)
     MergeFrom(*source);
   }
 }
 
-void LoginReuest::MergeFrom(const LoginReuest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:fixbug.LoginReuest)
+void LoginRequest::MergeFrom(const LoginRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:fixbug.LoginRequest)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -557,25 +557,25 @@ void LoginReuest::MergeFrom(const LoginReuest& from) {
   }
 }
 
-void LoginReuest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:fixbug.LoginReuest)
+void LoginRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:fixbug.LoginRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void LoginReuest::CopyFrom(const LoginReuest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:fixbug.LoginReuest)
+void LoginRequest::CopyFrom(const LoginRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:fixbug.LoginRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool LoginReuest::IsInitialized() const {
+bool LoginRequest::IsInitialized() const {
   return true;
 }
 
-void LoginReuest::InternalSwap(LoginReuest* other) {
+void LoginRequest::InternalSwap(LoginRequest* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
@@ -584,7 +584,7 @@ void LoginReuest::InternalSwap(LoginReuest* other) {
     GetArenaNoVirtual());
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata LoginReuest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata LoginRequest::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -833,7 +833,7 @@ const ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor* UserServiceRpc::GetDescriptor(
 }
 
 void UserServiceRpc::Login(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
-                         const ::fixbug::LoginReuest*,
+                         const ::fixbug::LoginRequest*,
                          ::fixbug::LoginResponse*,
                          ::google::protobuf::Closure* done) {
   controller->SetFailed("Method Login() not implemented.");
@@ -849,7 +849,7 @@ void UserServiceRpc::CallMethod(const ::PROTOBUF_NAMESPACE_ID::MethodDescriptor*
   switch(method->index()) {
     case 0:
       Login(controller,
-             ::PROTOBUF_NAMESPACE_ID::internal::DownCast<const ::fixbug::LoginReuest*>(
+             ::PROTOBUF_NAMESPACE_ID::internal::DownCast<const ::fixbug::LoginRequest*>(
                  request),
              ::PROTOBUF_NAMESPACE_ID::internal::DownCast<::fixbug::LoginResponse*>(
                  response),
@@ -866,7 +866,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message& UserServiceRpc::GetRequestPrototype(
   GOOGLE_DCHECK_EQ(method->service(), descriptor());
   switch(method->index()) {
     case 0:
-      return ::fixbug::LoginReuest::default_instance();
+      return ::fixbug::LoginRequest::default_instance();
     default:
       GOOGLE_LOG(FATAL) << "Bad method index; this should never happen.";
       return *::PROTOBUF_NAMESPACE_ID::MessageFactory::generated_factory()
@@ -899,7 +899,7 @@ UserServiceRpc_Stub::~UserServiceRpc_Stub() {
 }
 
 void UserServiceRpc_Stub::Login(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
-                              const ::fixbug::LoginReuest* request,
+                              const ::fixbug::LoginRequest* request,
                               ::fixbug::LoginResponse* response,
                               ::google::protobuf::Closure* done) {
   channel_->CallMethod(descriptor()->method(0),
@@ -912,8 +912,8 @@ PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::fixbug::ResultCode* Arena::CreateMaybeMessage< ::fixbug::ResultCode >(Arena* arena) {
   return Arena::CreateInternal< ::fixbug::ResultCode >(arena);
 }
-template<> PROTOBUF_NOINLINE ::fixbug::LoginReuest* Arena::CreateMaybeMessage< ::fixbug::LoginReuest >(Arena* arena) {
-  return Arena::CreateInternal< ::fixbug::LoginReuest >(arena);
+template<> PROTOBUF_NOINLINE ::fixbug::LoginRequest* Arena::CreateMaybeMessage< ::fixbug::LoginRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::fixbug::LoginRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::fixbug::LoginResponse* Arena::CreateMaybeMessage< ::fixbug::LoginResponse >(Arena* arena) {
   return Arena::CreateInternal< ::fixbug::LoginResponse >(arena);
