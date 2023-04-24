@@ -43,13 +43,6 @@ void MprpcApplication::Init(int argc, char **argv) {
     // std::cout << "rpcserverport: " << m_config.Load("rpcserverport") << std::endl;
     // std::cout << "zookeeperip: " << m_config.Load("zookeeperip") << std::endl;
     // std::cout << "zookeeperport: " << m_config.Load("zookeeperport") << std::endl;
-
-    // 启动日志模块，设置日志等级
-    Logger& logger =  Logger::GetInstance();
-    std::string str = m_config.Load("loglevel");
-    if (str != "") {
-        logger.SetLogLevel(str);
-    }
 }
 
 MprpcApplication& MprpcApplication::GetInstance() {

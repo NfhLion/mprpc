@@ -1,3 +1,0 @@
-2023-4-24 12:45:36 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 109] MprpcApplication init success
-2023-4-24 12:45:54 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 109] MprpcApplication init success
-2023-4-24 12:46:13 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 109] MprpcApplication init success

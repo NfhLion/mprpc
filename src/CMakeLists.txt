@@ -4,6 +4,7 @@ set(SRC_LIST mprpcapplication.cc
              mprpcconfig.cc
              mprpccontroller.cc
              mprpcchannel.cc
+             asynclogging.cc
              logger.cc)
 
 add_library(mprpc ${SRC_LIST})

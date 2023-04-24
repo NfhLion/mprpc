@@ -1,0 +1,2 @@
+[MPRPC] 2023-4-24 19:27:43 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 119] insert UserService to RpcProvider
+[MPRPC] 2023-4-24 19:27:43 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 121] insert FriendService to RpcProvider

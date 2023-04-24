@@ -106,11 +106,19 @@ int main(int argc, char **argv) {
 
     // 调用框架的初始化操作
     MprpcApplication::Init(argc, argv);
-    LOG_INFO("MprpcApplication init success");
+
+    // 启动日志模块
+    // 启动日志模块，设置日志等级
+    Logger::GetInstance().Init("./config/log.conf");
+
+    // LOG_INFO("MprpcApplication init success");
+    // LOG_DEBUG("Test debug");
     // provider是一个rpc网络服务对象。把UserService对象发布到rpc节点上
     RpcProvider provider;
     provider.NotifyService(new UserService());
+    LOG_INFO("insert UserService to RpcProvider");
     provider.NotifyService(new FriendService());
+    LOG_INFO("insert FriendService to RpcProvider");
 
     // 启动一个rpc服务发布节点   Run以后，进程进入阻塞状态，等待远程的rpc调用请求
     provider.Run();

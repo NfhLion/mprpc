@@ -1,11 +1,10 @@
 #pragma once
 
-#include "lockqueue.h"
+#include "mprpcconfig.h"
+#include "asynclogging.h"
 
 #include <time.h>
 #include <string>
-#include <thread>
-#include <condition_variable>
 #include <unordered_map>
 
 enum LogLevel
@@ -26,7 +25,7 @@ std::string MakeLogMsgHeader(int level);
     {  \
         Logger &logger = Logger::GetInstance(); \
         char c[1024] = {0}; \
-        snprintf(c, 1024, "%s [%s %d] %s", MakeLogMsgHeader(logger.GetLogLevel()).c_str(),\
+        snprintf(c, 1024, "[%s] %s [%s %d] %s", logger.GetTag().c_str(), MakeLogMsgHeader(logger.GetLogLevel()).c_str(),\
                                         __FILE__, __LINE__, logmsgformat, ##__VA_ARGS__); \
         logger.Log(c); \
     } while(0); \
@@ -34,7 +33,7 @@ std::string MakeLogMsgHeader(int level);
 #define LOG_TRACE(logmsgformat, ...) \
     do \
     {  \
-        if (TRACE <= Logger::GetInstance().GetLogLevel()) { \
+        if (TRACE >= Logger::GetInstance().GetLogLevel()) { \
             LOG_PRINT(logmsgformat, ##__VA_ARGS__); \
         }   \
     } while(0); \
@@ -42,7 +41,7 @@ std::string MakeLogMsgHeader(int level);
 #define LOG_DEBUG(logmsgformat, ...) \
     do \
     {  \
-        if (DEBUG <= Logger::GetInstance().GetLogLevel()) { \
+        if (DEBUG >= Logger::GetInstance().GetLogLevel()) { \
             LOG_PRINT(logmsgformat, ##__VA_ARGS__); \
         }   \
     } while(0); \
@@ -50,7 +49,7 @@ std::string MakeLogMsgHeader(int level);
 #define LOG_INFO(logmsgformat, ...) \
     do \
     {  \
-        if (INFO <= Logger::GetInstance().GetLogLevel()) { \
+        if (INFO >= Logger::GetInstance().GetLogLevel()) { \
             LOG_PRINT(logmsgformat, ##__VA_ARGS__); \
         }   \
     } while(0); \
@@ -58,7 +57,7 @@ std::string MakeLogMsgHeader(int level);
 #define LOG_WARN(logmsgformat, ...) \
     do \
     {  \
-        if (WARN <= Logger::GetInstance().GetLogLevel()) { \
+        if (WARN >= Logger::GetInstance().GetLogLevel()) { \
             LOG_PRINT(logmsgformat, ##__VA_ARGS__); \
         }   \
     } while(0); \
@@ -66,7 +65,7 @@ std::string MakeLogMsgHeader(int level);
 #define LOG_ERROR(logmsgformat, ...) \
     do \
     {  \
-        if (ERROR <= Logger::GetInstance().GetLogLevel()) { \
+        if (ERROR >= Logger::GetInstance().GetLogLevel()) { \
             LOG_PRINT(logmsgformat, ##__VA_ARGS__); \
         }   \
     } while(0); \
@@ -74,26 +73,31 @@ std::string MakeLogMsgHeader(int level);
 #define LOG_FATAL(logmsgformat, ...) \
     do \
     {  \
-        if (FATAL <= Logger::GetInstance().GetLogLevel()) { \
+        if (FATAL >= Logger::GetInstance().GetLogLevel()) { \
             LOG_PRINT(logmsgformat, ##__VA_ARGS__); \
         }   \
     } while(0); \
 
 class Logger {
 public:
+    void Init(const std::string& path);
     void SetLogLevel(LogLevel level);
-    void SetLogLevel(const std::string&);
+    void SetLogLevel(const std::string& level);
     int GetLogLevel() const { return m_loglevel; }
+    const std::string& GetTag() const { return m_tag; }
     void Log(const std::string& msg);
 
     static Logger& GetInstance();
 
 private:
     int m_loglevel;
-    LockQueue<std::string> m_lckQue;
-    std::condition_variable m_cond;
+    std::string m_tag;
+    MprpcConfig m_logConfig;
+
+    AsyncLogging* m_asyncLogging;
 
     Logger();
+    ~Logger();
     Logger(const Logger&) = delete;
     Logger(Logger&&) = delete;
 };
