@@ -9,11 +9,17 @@
 
 #include <string>
 #include <functional>
+#include <memory>
 #include <unordered_map>
+
+#include "zookeeperutil.h"
 
 // 框架提供的专门发布rpc服务的网络对象类
 class RpcProvider {
 public:
+    RpcProvider();
+    ~RpcProvider();
+
     void NotifyService(google::protobuf::Service* service);
 
     // 启动rpc服务节点
@@ -27,7 +33,10 @@ private:
     void SendRpcResponse(const muduo::net::TcpConnectionPtr&, google::protobuf::Message*);
 
 private:
-    muduo::net::EventLoop m_eventLoop;
+    std::unique_ptr<ZkClient> m_zkClientPtr;
+
+    std::unique_ptr<muduo::net::TcpServer> m_serverPtr;
+    muduo::net::EventLoop* m_eventLoop;
 
     // service服务类型
     struct ServiceInfo {

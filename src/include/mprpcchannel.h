@@ -2,6 +2,8 @@
 
 #include <google/protobuf/service.h>
 
+#include "zookeeperutil.h"
+
 class MprpcChannel : public google::protobuf::RpcChannel {
 public:
 
@@ -11,5 +13,5 @@ public:
                           google::protobuf::Message* response, 
                           google::protobuf::Closure* done);
 private:
-
+    std::unique_ptr<ZkClient> m_zkClientPtr;
 };
