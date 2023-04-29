@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+using namespace hrpc;
+using namespace hrpc::util;
+
 const int G_LOGQUEU_MAX_SIZE = 8;
 
 static std::string MakeLogFilename(const char* outdir) {

@@ -2,6 +2,7 @@
 
 #include "config.h"
 
+using namespace hrpc::util;
 namespace hrpc
 {
 // mprpc的基础类

@@ -11,6 +11,7 @@
 #include <errno.h>
 
 using namespace hrpc;
+using namespace hrpc::util;
 
  void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
                                google::protobuf::RpcController* controller,

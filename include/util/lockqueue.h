@@ -3,6 +3,11 @@
 #include <queue>
 #include <mutex>
 
+namespace hrpc
+{
+namespace util
+{
+
 template <typename T>
 class LockQueue {
 public:
@@ -37,3 +42,6 @@ private:
     std::queue<T> m_queue;
     std::mutex m_mutex;
 };
+
+} // namespace util
+} // namespace hrpc

@@ -6,6 +6,11 @@
 #include <thread>
 #include <condition_variable>
 
+namespace hrpc
+{
+namespace util
+{
+
 class AsyncLogging {
 public:
     AsyncLogging();
@@ -25,3 +30,6 @@ private:
     AsyncLogging(const AsyncLogging&) = delete;
     AsyncLogging(AsyncLogging&&) = delete;
 };
+
+} // namespace util
+} // namespace hrpc

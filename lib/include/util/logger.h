@@ -7,6 +7,11 @@
 #include <string>
 #include <unordered_map>
 
+namespace hrpc
+{
+namespace util
+{
+
 enum LogLevel
 {
     TRACE,  // 调试，指出比DEBUG粒度更细的一些信息事件（开发过程中使用）
@@ -18,6 +23,7 @@ enum LogLevel
 };
 
 std::string MakeLogMsgHeader(int level);
+class Logger;
 
 // 定义宏 LOG_INFO("xxx %d %s", 20, "xxxx")
 #define LOG_PRINT(logmsgformat, ...) \
@@ -101,3 +107,6 @@ private:
     Logger(const Logger&) = delete;
     Logger(Logger&&) = delete;
 };
+
+} // namespace util
+} // namespace hrpc

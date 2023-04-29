@@ -4,6 +4,9 @@
 #include <chrono>
 #include <time.h>
 
+using namespace hrpc;
+using namespace hrpc::util;
+
 static std::unordered_map<int, std::string> g_logLevelMap = 
 {
     {TRACE, "TRACE"},
@@ -24,7 +27,7 @@ static std::unordered_map<std::string, int> g_logLevelStrMap =
     {"FATAL", FATAL}
 };
 
-std::string MakeLogMsgHeader(int level) {
+std::string hrpc::util::MakeLogMsgHeader(int level) {
     time_t now = time(nullptr);
     tm *nowtm = localtime(&now);
     char time_buf[128] = "\0";

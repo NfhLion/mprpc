@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+using namespace hrpc;
+using namespace hrpc::util;
+
 void Config::Trim(std::string& src_buf) {
     int idx = src_buf.find_first_not_of(' ');
     if (idx != -1) {

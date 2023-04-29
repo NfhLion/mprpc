@@ -9,6 +9,7 @@
 #include "logger.h"
 
 using namespace hrpc;
+using namespace hrpc::util;
 
 /*
 UserService目前是一个本地服务
