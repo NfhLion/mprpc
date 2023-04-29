@@ -35,7 +35,7 @@ void RpcProvider::NotifyService(google::protobuf::Service* service) {
 // 启动rpc服务节点
 void RpcProvider::Run() {
 
-    m_eventLoop = new muduo::net::EventLoop();
+    m_eventLoop = new hrpc::net::EventLoop();
     if (m_eventLoop == nullptr) {
         exit(EXIT_FAILURE);
     }
@@ -44,16 +44,14 @@ void RpcProvider::Run() {
     uint16_t port = atoi(MprpcApplication::GetInstance().GetConfig().Load("rpcserverport").c_str());
     std::string zk_host = MprpcApplication::GetInstance().GetConfig().Load("zookeeperip");
     std::string zk_port = MprpcApplication::GetInstance().GetConfig().Load("zookeeperport");
-    muduo::net::InetAddress address(ip, port);
+    hrpc::net::InetAddress address(ip, port);
 
-    m_serverPtr = std::make_unique<muduo::net::TcpServer>(m_eventLoop, address, "RpcProvider");
+    m_serverPtr = std::make_unique<hrpc::net::TcpServer>(m_eventLoop, address, "RpcProvider");
 
     //绑定连接回调和消息读写回调
     m_serverPtr->setConnectionCallback(std::bind(&RpcProvider::OnConnection, this, std::placeholders::_1));
     m_serverPtr->setMessageCallback(std::bind(&RpcProvider::OnMessage, this, 
-                              std::placeholders::_1,
-                              std::placeholders::_2,
-                              std::placeholders::_3));
+                              std::placeholders::_1));
 
     // 把当前rpc节点上要发布的服务全部注册到zk上面，让rpc client可以从zk上发现服务
     // session timeout   30s     zkclient 网络I/O线程  1/3 * timeout 时间发送ping消息
@@ -76,9 +74,6 @@ void RpcProvider::Run() {
         }
     }
 
-    // 设置线程数量
-    m_serverPtr->setThreadNum(4);
-
     std::cout << "RpcProvider start service at ip: " << ip << ", port: " << port << std::endl;
 
     // 启动网络服务
@@ -87,7 +82,7 @@ void RpcProvider::Run() {
 }
 
 // new socket连接回调
-void RpcProvider::OnConnection(const muduo::net::TcpConnectionPtr& conn) {
+void RpcProvider::OnConnection(const hrpc::net::TcpConnectionPtr& conn) {
     
     if (!conn->connected()) {
         conn->shutdown();
@@ -95,11 +90,9 @@ void RpcProvider::OnConnection(const muduo::net::TcpConnectionPtr& conn) {
 }
 
 // 读写事件回调
-void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn, 
-                            muduo::net::Buffer* buffer,
-                            muduo::Timestamp) {
+void RpcProvider::OnMessage(const hrpc::net::TcpConnectionPtr& conn) {
 
-    std::string recv_buf = buffer->retrieveAllAsString();
+    std::string recv_buf = conn->readAll();
 
     // 读取4字节的头部大小
     uint32_t header_size = 0;
@@ -151,7 +144,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn,
 
     // 给下面的method方法的调用。绑定一个Closure的回调函数
     google::protobuf::Closure* done = google::protobuf::NewCallback<RpcProvider, 
-                                                                    const muduo::net::TcpConnectionPtr&, 
+                                                                    const hrpc::net::TcpConnectionPtr&, 
                                                                     google::protobuf::Message*>
                                                                     (this, &RpcProvider::SendRpcResponse, conn, response);
 
@@ -160,7 +153,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn,
 }
 
 // Closure的回调操作，用于序列化rpc的响应和网络发送
-void RpcProvider::SendRpcResponse(const muduo::net::TcpConnectionPtr& conn, google::protobuf::Message* response) {
+void RpcProvider::SendRpcResponse(const hrpc::net::TcpConnectionPtr& conn, google::protobuf::Message* response) {
 
     std::string response_str;
     if (response->SerializeToString(&response_str)) {

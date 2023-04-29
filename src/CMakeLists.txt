@@ -9,4 +9,7 @@ set(SRC_LIST mprpcapplication.cc
              zookeeperutil.cc)
 
 add_library(mprpc ${SRC_LIST})
-target_link_libraries(mprpc muduo_net muduo_base pthread zookeeper_mt)
+target_link_libraries(mprpc hrpc_net pthread zookeeper_mt)
+
+add_subdirectory(net)
+#add_subdirectory(util)
