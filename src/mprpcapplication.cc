@@ -5,7 +5,7 @@
 #include <string>
 #include <unistd.h>
 
-MprpcConfig MprpcApplication::m_config;
+Config MprpcApplication::m_config;
 
 void ShowArgHelp() {
     std::cout << "fomat: commid -i <configfile>" << std::endl; 
@@ -50,6 +50,6 @@ MprpcApplication& MprpcApplication::GetInstance() {
     return app;
 }
 
-MprpcConfig& MprpcApplication::GetConfig() {
+Config& MprpcApplication::GetConfig() {
     return m_config;
 }

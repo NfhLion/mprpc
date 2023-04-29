@@ -7,4 +7,4 @@ cd `pwd`/build &&
 	cmake .. &&
 	make
 cd ..
-cp -r `pwd`/src/include `pwd`/lib
+cp -r `pwd`/include `pwd`/lib
