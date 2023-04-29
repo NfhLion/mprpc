@@ -15,6 +15,9 @@
 
 #include "zookeeperutil.h"
 
+namespace hrpc
+{
+
 // 框架提供的专门发布rpc服务的网络对象类
 class RpcProvider {
 public:
@@ -48,3 +51,5 @@ private:
     // 存储注册成功的服务对象和其服务方法的所有信息
     std::unordered_map<std::string, ServiceInfo> m_serviceMap;
 }; 
+
+} // namespace hrpc

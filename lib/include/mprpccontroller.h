@@ -3,6 +3,9 @@
 #include <google/protobuf/service.h>
 #include <string>
 
+namespace hrpc
+{
+
 class MprpcController : public google::protobuf::RpcController {
 public:
     MprpcController();
@@ -21,3 +24,5 @@ private:
     bool m_failed;
     std::string m_errText;
 };
+
+} // namespace hrpc

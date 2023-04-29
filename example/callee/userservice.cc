@@ -5,6 +5,8 @@
 #include "mprpcapplication.h"
 #include "rpcprovider.h"
 
+using namespace hrpc;
+
 /*
 UserService目前是一个本地服务
 */

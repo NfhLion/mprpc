@@ -2,6 +2,8 @@
 #include "mprpcapplication.h"
 #include "rpcheader.pb.h"
 
+using namespace hrpc;
+
 RpcProvider::RpcProvider()
         : m_eventLoop(nullptr)
 {

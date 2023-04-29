@@ -2,6 +2,8 @@
 
 #include "config.h"
 
+namespace hrpc
+{
 // mprpc的基础类
 class MprpcApplication {
 public:
@@ -16,3 +18,5 @@ private:
     MprpcApplication(const MprpcApplication&) = delete;
     MprpcApplication(MprpcApplication&&) = delete;
 };
+
+} // namespace hrpc

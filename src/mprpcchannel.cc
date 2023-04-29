@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include <errno.h>
 
+using namespace hrpc;
+
  void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
                                google::protobuf::RpcController* controller,
                                const google::protobuf::Message* request,

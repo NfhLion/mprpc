@@ -4,6 +4,9 @@
 
 #include "zookeeperutil.h"
 
+namespace hrpc
+{
+
 class MprpcChannel : public google::protobuf::RpcChannel {
 public:
 
@@ -15,3 +18,5 @@ public:
 private:
     std::unique_ptr<ZkClient> m_zkClientPtr;
 };
+
+} // namespace hrpc

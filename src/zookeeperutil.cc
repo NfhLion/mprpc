@@ -3,6 +3,8 @@
 #include <semaphore.h>
 #include <iostream>
 
+using namespace hrpc;
+
 // 全局的watcher观察器   zkserver给zkclient的通知
 void global_watcher(zhandle_t *zh, int type,
                    int state, const char *path, void *watcherCtx)

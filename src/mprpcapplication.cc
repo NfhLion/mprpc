@@ -5,6 +5,8 @@
 #include <string>
 #include <unistd.h>
 
+using namespace hrpc;
+
 Config MprpcApplication::m_config;
 
 void ShowArgHelp() {

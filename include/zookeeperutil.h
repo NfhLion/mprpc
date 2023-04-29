@@ -4,6 +4,9 @@
 #include <zookeeper/zookeeper.h>
 #include <string>
 
+namespace hrpc
+{
+
 // 封装的zk客户端类
 class ZkClient
 {
@@ -20,3 +23,5 @@ private:
     // zk的客户端句柄
     zhandle_t *m_zhandle;
 };
+
+} // namespace hrpc

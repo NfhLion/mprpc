@@ -6,6 +6,8 @@
 #include "user.pb.h"
 #include "friend.pb.h"
 
+using namespace hrpc;
+
 void UseUserServicePrcTest() {
     // ------------ 远程调用Login
     fixbug::UserServiceRpc_Stub stub(new MprpcChannel());

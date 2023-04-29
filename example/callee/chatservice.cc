@@ -8,6 +8,8 @@
 #include "rpcprovider.h"
 #include "logger.h"
 
+using namespace hrpc;
+
 /*
 UserService目前是一个本地服务
 */

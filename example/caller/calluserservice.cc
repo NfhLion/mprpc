@@ -4,6 +4,8 @@
 #include "mprpcchannel.h"
 #include "user.pb.h"
 
+using namespace hrpc;
+
 int main(int argc, char* argv[]) {
 
     // 初始化框架

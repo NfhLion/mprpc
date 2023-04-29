@@ -1,5 +1,7 @@
 #include "mprpccontroller.h"
 
+using namespace hrpc;
+
 MprpcController::MprpcController() {
     m_failed = false;
     m_errText = "";

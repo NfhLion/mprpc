@@ -5,6 +5,8 @@
 #include "rpcprovider.h"
 #include <vector>
 
+using namespace hrpc;
+
 class FriendService : public fixbug::FiendServiceRpc
 {
 public:
