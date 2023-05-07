@@ -5,6 +5,7 @@
 #include <string>
 #include <thread>
 #include <condition_variable>
+#include <vector>
 
 namespace hrpc
 {
@@ -21,8 +22,16 @@ public:
     void Init();
 
 private:
+    using Buffer = std::vector<std::string>;
+
     bool m_exit;
-    LockQueue<std::string> m_lckQue;
+    bool m_errorLog;
+    std::string m_errorLogStr;
+
+    Buffer currentBuffer_;
+    std::vector<Buffer> buffers_;
+
+    std::mutex m_mutex;
     std::condition_variable m_cond;
 
     std::string m_outDir;

@@ -30,10 +30,13 @@ class Logger;
     do \
     {  \
         Logger &logger = Logger::GetInstance(); \
-        char c[1024] = {0}; \
-        snprintf(c, 1024, "[%s] %s [%s %d] %s", logger.GetTag().c_str(), MakeLogMsgHeader(logger.GetLogLevel()).c_str(),\
-                                        __FILE__, __LINE__, logmsgformat, ##__VA_ARGS__); \
-        logger.Log(c); \
+        char pre[1024] = {0};\
+        snprintf(pre, 1024, "[%s] %s [%s %d] ", logger.GetTag().c_str(), MakeLogMsgHeader(logger.GetLogLevel()).c_str(),\
+                                    __FILE__, __LINE__); \
+        char info[1024] = {0}; \
+        snprintf(info, 1024, logmsgformat, ##__VA_ARGS__); \
+        std::string log_info = std::string(pre) + std::string(info); \
+        logger.Log(log_info.c_str()); \
     } while(0); \
 
 #define LOG_TRACE(logmsgformat, ...) \

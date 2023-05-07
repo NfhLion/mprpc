@@ -5,7 +5,9 @@
 using namespace hrpc;
 using namespace hrpc::util;
 
-const int G_LOGQUEU_MAX_SIZE = 8;
+const int G_BUFFER_MAX_SIZE = 10;
+const int G_BUFFERS_MAX_SIZE = 16;
+const int G_ERROR_LOG_SIZE = 25;
 
 static std::string MakeLogFilename(const char* outdir) {
     // 获取当前的日期，然后取日志信息，写入相应的日志文件当中 a+
@@ -17,28 +19,48 @@ static std::string MakeLogFilename(const char* outdir) {
     return file_name;
 }
 
-AsyncLogging::AsyncLogging() {
-    m_exit = false;
+AsyncLogging::AsyncLogging() 
+    : m_exit(false),
+      m_errorLog(false)
+{
+    currentBuffer_.reserve(G_BUFFER_MAX_SIZE);
+    buffers_.reserve(G_BUFFERS_MAX_SIZE);
 }
 
 void AsyncLogging::Init() {
     // 启动专门的写日志线程
     std::thread writeLogTask([&](){
-        std::mutex mtx;
+        std::vector<Buffer> writeBuffer;
+        writeBuffer.reserve(16);
+        writeBuffer.clear();
         for (;;)
         {
-            // 日志写入线程的第二种苏醒方式：每个三秒自动起来看一眼
-            std::unique_lock<std::mutex> lock(mtx);
-            while (m_lckQue.empty()) {
-                m_cond.wait_for(lock, std::chrono::seconds(3));
-                if (m_exit == true) {
-                    break;
+            {
+                std::unique_lock<std::mutex> lock(m_mutex);
+                if (buffers_.empty()) {
+                    // 日志写入线程的第二种苏醒方式：每个三秒自动起来看一眼
+                    m_cond.wait_for(lock, std::chrono::seconds(3));
                 }
+                buffers_.push_back(std::move(currentBuffer_));
+                Buffer nextBuffer;
+                nextBuffer.reserve(G_BUFFER_MAX_SIZE);
+                currentBuffer_ = std::move(nextBuffer);
+                writeBuffer.swap(buffers_);
             }
-            lock.unlock();
-            if (m_exit == true) {
-                break;
+
+            if (writeBuffer.size() > G_ERROR_LOG_SIZE) {
+                m_errorLog = true;
+                char buf[256];
+                time_t now = time(nullptr);
+                tm *nowtm = localtime(&now);
+                sprintf(buf, "Dropped log messages at %d-%d-%d, %zd larger buffers\n",
+                        nowtm->tm_year+1900, nowtm->tm_mon+1, nowtm->tm_mday,
+                        writeBuffer.size()-2);
+                fputs(buf, stderr);
+                m_errorLogStr = buf;
+                writeBuffer.erase(writeBuffer.begin()+2, writeBuffer.end());
             }
+
             
             std::string file_name = MakeLogFilename(m_outDir.c_str());
             FILE *pf = fopen(file_name.c_str(), "a+");
@@ -48,26 +70,24 @@ void AsyncLogging::Init() {
                 exit(EXIT_FAILURE);
             }
             
-            /**
-             * 如果当前缓冲区大小 < G_LOGQUEU_MAX_SIZE，则正常去一条数据写入到文件
-             * 否则将整个缓冲区数据全部写入到文件
-            */
-            if (m_lckQue.size() < G_LOGQUEU_MAX_SIZE) {
-                std::string msg = m_lckQue.pop();
-                msg.append("\n");
-                fputs(msg.c_str(), pf);
-            } else {
-                std::queue<std::string> q;
-                m_lckQue.swap(q);
-
-                while (!q.empty()) {
-                    std::string msg = q.front();
-                    q.pop();
+            for (int i = 0; i < writeBuffer.size(); ++i) {
+                Buffer buf = writeBuffer[i];
+                if (buf.empty()) {
+                    continue;
+                }
+                for (int j = 0; j < buf.size(); j++) {
+                    std::string msg = buf[j];
                     msg.append("\n");
                     fputs(msg.c_str(), pf);
                 }
             }
+            if (m_errorLog) {
+                m_errorLogStr.append("\n");
+                fputs(m_errorLogStr.c_str(), pf);
+                m_errorLog = false;
+            }
             
+            writeBuffer.clear();
             fclose(pf);
         }
     });
@@ -81,8 +101,18 @@ AsyncLogging::~AsyncLogging() {
 
 // 前端线程往queue中写日志
 void AsyncLogging::Log(const std::string& msg) {
-    m_lckQue.push(msg);
-    m_cond.notify_one();
+    std::unique_lock<std::mutex> lock(m_mutex);
+    if (currentBuffer_.size() < G_BUFFER_MAX_SIZE) {
+        currentBuffer_.push_back(msg);
+    } else {
+        buffers_.push_back(std::move(currentBuffer_));
+        Buffer nextBuffer;
+        nextBuffer.reserve(G_BUFFER_MAX_SIZE);
+        currentBuffer_ = std::move(nextBuffer);
+        currentBuffer_.push_back(msg);
+
+        m_cond.notify_one();
+    }
 }
 
 void AsyncLogging::SetOutDir(const std::string& outdir) {
