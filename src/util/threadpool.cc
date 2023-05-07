@@ -25,10 +25,8 @@ ThreadPool::~ThreadPool() {
     std::unique_lock<std::mutex> lock(taskQueMtx_);
     notEmpty_.notify_all();
     exitCond_.wait(lock, [&]()->bool {
-        std::cout << "---------: " << threads_.size() << std::endl;
         return threads_.empty();
     });
-    std::cout << "---------" << std::endl;
 }
 
 // 设置线程池的工作模式
@@ -58,7 +56,7 @@ void ThreadPool::setTaskQueMaxThreshHold(int threshHold) {
 }
 
 // 给线程池提交任务
-Result ThreadPool::subMitTask(std::shared_ptr<Task> sp) {
+std::shared_ptr<Result> ThreadPool::subMitTask(std::shared_ptr<Task> sp) {
     std::unique_lock<std::mutex> lock(taskQueMtx_);
 
     // while (taskQue_.size() == taskQueMaxThreshHold_) {
@@ -74,13 +72,14 @@ Result ThreadPool::subMitTask(std::shared_ptr<Task> sp) {
     if (!res) {
         // 表示notFull_等待1s，条件依然没有满足
         std::cerr << "task queue is full, submit task fail." << std::endl;
-        return Result(sp, false);
+        std::shared_ptr<Result> resPtr(new Result(sp, false));
+        return resPtr;
     }
 
     taskQue_.emplace(sp);
     taskSize_ ++;
 
-    notEmpty_.notify_all();
+    notEmpty_.notify_one();
 
     // cached模式，任务数量比较紧急。场景：小而快的任务
     // 需要根据任务数量和空闲线程数量，判断是否需要开辟新线程
@@ -99,8 +98,8 @@ Result ThreadPool::subMitTask(std::shared_ptr<Task> sp) {
         std::cout << "create new thread, id = " << threadId << "   ---   " << std::this_thread::get_id() << std::endl;
     }
 
-
-    return Result(sp);
+    std::shared_ptr<Result> resPtr(new Result(sp));
+    return resPtr;
 }
 
 //  开启线程池
@@ -142,7 +141,7 @@ void ThreadPool::threadHandler(int threadId) {
                     // 开始回收当前线程
                     threads_.erase(threadId);
                     std::cout << "threadId = " << std::this_thread::get_id() << " >>> exit" << std::endl;
-                    exitCond_.notify_all();
+                    exitCond_.notify_one();
                     return;
                 }
                 // cached模式下，有可能创建了很多线程，但是空闲时间超过了60s
@@ -173,7 +172,7 @@ void ThreadPool::threadHandler(int threadId) {
             std::cout << "thread id = " << std::this_thread::get_id() << " 获取任务成功 ..." << std::endl;
             
             idleThreadSize_--;
-            
+
             task = taskQue_.front();
             taskQue_.pop();
             taskSize_ --;
@@ -198,26 +197,6 @@ bool ThreadPool::checkRunningState() const {
     return isPoolRunning_;
 }
 
-/////////////////////////// 线程方法实现 ///////////////////////////
-int Thread::generateId_ = 0;
-
-Thread::Thread(ThreadFunc func)
-    : func_(func),
-      threadId_(generateId_++)
-{}
-
-Thread::~Thread()
-{}
-
-int Thread::getId() const {
-    return threadId_;
-}
-
-void Thread::start() {
-    std::thread t(func_, threadId_);
-    t.detach();
-}
-
 /////////////////////////// Result方法实现 ///////////////////////////
 Result::Result(std::shared_ptr<Task> task, bool isValid) 
     : task_(task),
@@ -226,15 +205,15 @@ Result::Result(std::shared_ptr<Task> task, bool isValid)
     task_->setResult(this);
 }
 
-void Result::setVal(Any any) {
+void Result::setVal(std::any&& any) {
     any_ = std::move(any);
     sem_.post();
 }
 
-Any Result::get() {
+const std::any& Result::get() {
     if (!isValid_) {
             return "";
     }
     sem_.wait();
-    return std::move(any_);
+    return any_;
 }

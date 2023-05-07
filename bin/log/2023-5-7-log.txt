@@ -1,0 +1,6 @@
+[TEST] 2023-5-7 23:17:27 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 122] insert UserService to RpcProvider
+[TEST] 2023-5-7 23:17:27 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 122] insert UserService to RpcProvider
+[TEST] 2023-5-7 23:18:7 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 122] insert UserService to RpcProvider
+[TEST] 2023-5-7 23:18:7 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 122] insert UserService to RpcProvider
+[TEST] 2023-5-7 23:21:31 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 122] insert UserService to RpcProvider
+[TEST] 2023-5-7 23:21:31 [INFO] [/home/lh/work/rpc_code/mprpc/example/callee/chatservice.cc 124] insert FriendService to RpcProvider

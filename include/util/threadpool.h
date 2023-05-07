@@ -8,11 +8,13 @@
 #include <mutex>
 #include <condition_variable>
 #include <functional>
-#include <thread>
 #include <unordered_map>
 
 #include "Any.h"
+#include "thread.h"
 #include "Semaphore.h"
+
+#include <any>
 
 namespace hrpc
 {
@@ -26,12 +28,12 @@ public:
     Result(std::shared_ptr<Task> task, bool isValid = true);
     ~Result() = default;
 
-    void setVal(Any any);
+    void setVal(std::any&& any);
 
-    Any get();
+    const std::any& get();
     
 private:
-    Any any_;                       // 存储任务的返回值
+    std::any any_;                       // 存储任务的返回值
     Semaphore sem_;           // 
     std::shared_ptr<Task> task_;
     std::atomic_bool isValid_;
@@ -54,7 +56,7 @@ public:
         result_ = res;
     }
 
-    virtual Any run() = 0;
+    virtual std::any run() = 0;
 private:
     Result* result_;
 };
@@ -64,25 +66,6 @@ enum class PoolMode
 {
     MODE_FIXED,     // 固定数量模式
     MODE_CACHED     // 动态增长模式
-};
-
-class Thread {
-public:
-    // 线程函数对象类型
-    using ThreadFunc = std::function<void(int)>;
-    
-    Thread(ThreadFunc func);
-    ~Thread();
-    
-    // 启动线程
-    void start();
-
-    int getId() const;
-private:
-    ThreadFunc func_;
-    int threadId_;      // 保存线程id
-
-    static int generateId_;
 };
 
 class ThreadPool {
@@ -103,7 +86,7 @@ public:
     void setTaskQueMaxThreshHold(int threshHold);
 
     // 给线程池提交任务
-    Result subMitTask(std::shared_ptr<Task> sp);
+    std::shared_ptr<Result> subMitTask(std::shared_ptr<Task> sp);
 
     // 开启线程池
     void start(unsigned int initThreadSize = std::thread::hardware_concurrency());

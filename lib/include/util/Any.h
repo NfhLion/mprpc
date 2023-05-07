@@ -17,8 +17,17 @@ public:
     Any(const Any&) = delete;
     Any& operator=(const Any&) = delete;
 
-    Any(Any&&) = default;
-    Any& operator=(Any&&) = default;
+    // Any(Any&&) = default;
+    // Any& operator=(Any&&) = default;
+
+    Any(Any&& other) {
+        base_ = std::move(other.base_);
+    }
+    Any& operator=(Any&& other) {
+        if (this != &other)
+            base_ = std::move(other.base_);
+        return *this;
+    }
 
     template<typename T>
     Any(T data) : base_(std::make_unique<Derive<T>>(data))
