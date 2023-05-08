@@ -35,6 +35,9 @@ void AsyncLogging::Init() {
         writeBuffer.clear();
         for (;;)
         {
+            if (m_exit) {
+                break;
+            }
             {
                 std::unique_lock<std::mutex> lock(m_mutex);
                 if (buffers_.empty()) {

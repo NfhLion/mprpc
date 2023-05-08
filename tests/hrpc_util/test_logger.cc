@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
     
     Logger::GetInstance().Init("./config/log.conf");
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 100000; i++) {
         LOG_INFO("test info log print, i = %d", i);
     }
 
