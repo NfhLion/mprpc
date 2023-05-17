@@ -3,6 +3,8 @@
 #include <iostream>
 #include <chrono>
 #include <time.h>
+#include <thread>
+#include <sstream>
 
 using namespace hrpc;
 using namespace hrpc::util;
@@ -27,17 +29,25 @@ static std::unordered_map<std::string, int> g_logLevelStrMap =
     {"FATAL", FATAL}
 };
 
+static std::string GetThreadId() {
+    std::thread::id id = std::this_thread::get_id();
+    std::stringstream sin;
+    sin << id;
+    return sin.str();
+}
+
 std::string hrpc::util::MakeLogMsgHeader(int level) {
     time_t now = time(nullptr);
     tm *nowtm = localtime(&now);
     char time_buf[128] = "\0";
-    sprintf(time_buf, "%d-%d-%d %d:%d:%d [%s]",
+    sprintf(time_buf, "%d-%d-%d %d:%d:%d [%s] [%s]",
             nowtm->tm_year+1900,
             nowtm->tm_mon+1,
             nowtm->tm_mday,
             nowtm->tm_hour, 
             nowtm->tm_min, 
             nowtm->tm_sec,
+            GetThreadId().c_str(),
             g_logLevelMap.at(level).c_str());
     return time_buf;
 }
