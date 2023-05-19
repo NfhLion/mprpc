@@ -73,12 +73,11 @@ Logger::~Logger() {
 void Logger::Init(const std::string& path) {
     m_logConfig.LoadConfigFile(path.c_str());
 
-    m_tag = m_logConfig.Load("logtag");
+    m_tag = m_logConfig.Load("log_tag");
     std::string out_dir = m_logConfig.Load("outdir");
     if (out_dir != "") {
         m_asyncLogging = new AsyncLogging();
-        m_asyncLogging->SetOutDir(out_dir);
-        m_asyncLogging->Init();
+        m_asyncLogging->start(m_logConfig);
     }
 }
 

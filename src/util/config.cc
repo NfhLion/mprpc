@@ -55,7 +55,7 @@ void Config::LoadConfigFile(const char* config_file) {
     fclose(pf);
 }
 
-std::string Config::Load(const std::string& key) {
+std::string Config::Load(const std::string& key) const{
     auto it = m_configMap.find(key);
     if (it == m_configMap.end()) {
         return "";

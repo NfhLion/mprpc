@@ -16,7 +16,7 @@ void testCoreDump() {
 }
 
 void testPrintLog() {
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 1000000; i++) {
         LOG_INFO("test info log print, i = %d", i);
     }
 }

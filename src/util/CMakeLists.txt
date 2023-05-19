@@ -1,5 +1,6 @@
 set(SRC_LIST config.cc
-             asynclogging.cc
+             FileUtil.cc
+             LogFile.cc
              asynclogging.cc
              logger.cc
              thread.cc

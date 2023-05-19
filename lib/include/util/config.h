@@ -11,7 +11,7 @@ namespace util
 class Config {
 public:
     void LoadConfigFile(const char* config_file);
-    std::string Load(const std::string& key);
+    std::string Load(const std::string& key) const;
 private:
     std::unordered_map<std::string, std::string> m_configMap;
 
