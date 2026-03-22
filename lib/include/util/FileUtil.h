@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HRPC_UTIL_FILE_UTIL_H
+#define HRPC_UTIL_FILE_UTIL_H
 
 #include <string>
 
@@ -37,3 +38,5 @@ private:
 
 } // namespace util
 } // namespace hrpc
+
+#endif // HRPC_UTIL_FILE_UTIL_H

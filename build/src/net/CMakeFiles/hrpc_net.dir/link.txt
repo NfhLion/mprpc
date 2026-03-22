@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/libhrpc_net.a  CMakeFiles/hrpc_net.dir/SocketsOps.cc.o CMakeFiles/hrpc_net.dir/InetAddress.cc.o CMakeFiles/hrpc_net.dir/Socket.cc.o CMakeFiles/hrpc_net.dir/EventLoop.cc.o CMakeFiles/hrpc_net.dir/Channel.cc.o CMakeFiles/hrpc_net.dir/Poller.cc.o CMakeFiles/hrpc_net.dir/Buffer.cc.o CMakeFiles/hrpc_net.dir/Acceptor.cc.o CMakeFiles/hrpc_net.dir/TcpConnection.cc.o CMakeFiles/hrpc_net.dir/TcpServer.cc.o
+/usr/bin/ranlib ../../../lib/libhrpc_net.a

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HRPC_MPRPC_CONTROLLER_H
+#define HRPC_MPRPC_CONTROLLER_H
 
 #include <google/protobuf/service.h>
 #include <string>
@@ -26,3 +27,5 @@ private:
 };
 
 } // namespace hrpc
+
+#endif // HRPC_MPRPC_CONTROLLER_H

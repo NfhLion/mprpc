@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HRPC_UTIL_CONFIG_H
+#define HRPC_UTIL_CONFIG_H
 
 #include <unordered_map>
 #include <string>
@@ -20,3 +21,5 @@ private:
 
 } // namespace util
 } // namespace hrpc
+
+#endif // HRPC_UTIL_CONFIG_H

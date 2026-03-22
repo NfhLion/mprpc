@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HRPC_RPC_PROVIDER_H
+#define HRPC_RPC_PROVIDER_H
 
 #include <google/protobuf/service.h>
 #include <google/protobuf/descriptor.h>
@@ -53,3 +54,5 @@ private:
 }; 
 
 } // namespace hrpc
+
+#endif // HRPC_RPC_PROVIDER_H

@@ -17,7 +17,7 @@ void onConnection(const TcpConnectionPtr &conn)
 
 void onMessage(const TcpConnectionPtr &conn)
 {
-    muduo::string msg(conn->readAll());
+    std::string msg(conn->readAll());
     std::cout << conn->name() << " echo " << msg.size() << " bytes, "
                      << "data received at " << msg << std::endl;
     

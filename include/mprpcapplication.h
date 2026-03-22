@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HRPC_MPRPC_APPLICATION_H
+#define HRPC_MPRPC_APPLICATION_H
 
 #include "config.h"
 
@@ -21,3 +22,5 @@ private:
 };
 
 } // namespace hrpc
+
+#endif // HRPC_MPRPC_APPLICATION_H

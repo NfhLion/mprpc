@@ -15,7 +15,7 @@
 #include "StringPiece.h"
 #include "Types.h"
 
-#include "Endian.h"
+#include "NetEndian.h"
 
 #include <algorithm>
 #include <vector>

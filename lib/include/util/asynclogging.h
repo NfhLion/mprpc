@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HRPC_UTIL_ASYNC_LOGGING_H
+#define HRPC_UTIL_ASYNC_LOGGING_H
 
 #include "LogFile.h"
 #include "config.h"
@@ -46,3 +47,5 @@ private:
 
 } // namespace util
 } // namespace hrpc
+
+#endif // HRPC_UTIL_ASYNC_LOGGING_H

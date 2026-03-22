@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HRPC_UTIL_LOCK_QUEUE_H
+#define HRPC_UTIL_LOCK_QUEUE_H
 
 #include <queue>
 #include <mutex>
@@ -45,3 +46,5 @@ private:
 
 } // namespace util
 } // namespace hrpc
+
+#endif // HRPC_UTIL_LOCK_QUEUE_H

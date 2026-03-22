@@ -9,7 +9,7 @@
 #include "InetAddress.h"
 
 // #include "muduo/base/Logging.h"
-#include "Endian.h"
+#include "NetEndian.h"
 #include "SocketsOps.h"
 
 #include <netdb.h>

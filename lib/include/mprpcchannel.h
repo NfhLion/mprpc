@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HRPC_MPRPC_CHANNEL_H
+#define HRPC_MPRPC_CHANNEL_H
 
 #include <google/protobuf/service.h>
 
@@ -20,3 +21,5 @@ private:
 };
 
 } // namespace hrpc
+
+#endif // HRPC_MPRPC_CHANNEL_H

@@ -1,6 +1,6 @@
-#pragma once
+#ifndef HRPC_ZOOKEEPER_UTIL_H
+#define HRPC_ZOOKEEPER_UTIL_H
 
-#include <semaphore.h>
 #include <zookeeper/zookeeper.h>
 #include <string>
 
@@ -25,3 +25,5 @@ private:
 };
 
 } // namespace hrpc
+
+#endif // HRPC_ZOOKEEPER_UTIL_H

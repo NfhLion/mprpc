@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HRPC_UTIL_LOG_FILE_H
+#define HRPC_UTIL_LOG_FILE_H
 
 #include <string>
 #include <memory>
@@ -42,3 +43,5 @@ private:
 
 } // namespace util
 } // namespace hrpc
+
+#endif // HRPC_UTIL_LOG_FILE_H
