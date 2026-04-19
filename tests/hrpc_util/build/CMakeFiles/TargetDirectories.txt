@@ -1,3 +1,0 @@
-/home/NfhLion/workspace/mprpc/tests/hrpc_util/build/CMakeFiles/rebuild_cache.dir
-/home/NfhLion/workspace/mprpc/tests/hrpc_util/build/CMakeFiles/edit_cache.dir
-/home/NfhLion/workspace/mprpc/tests/hrpc_util/build/CMakeFiles/test_logger.dir

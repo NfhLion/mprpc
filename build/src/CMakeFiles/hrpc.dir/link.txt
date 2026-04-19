@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../lib/libhrpc.a  CMakeFiles/hrpc.dir/mprpcapplication.cc.o CMakeFiles/hrpc.dir/rpcheader.pb.cc.o CMakeFiles/hrpc.dir/rpcprovider.cc.o CMakeFiles/hrpc.dir/mprpccontroller.cc.o CMakeFiles/hrpc.dir/mprpcchannel.cc.o CMakeFiles/hrpc.dir/zookeeperutil.cc.o
-/usr/bin/ranlib ../../lib/libhrpc.a

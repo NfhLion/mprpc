@@ -1,18 +1,18 @@
-cmake_minimum_required(VERSION 3.0)
-project(hrpc_util_test)
+set(HRPC_TEST_OUTPUT_DIR ${PROJECT_SOURCE_DIR}/bin)
+set(HRPC_TEST_BUILD_RPATH "\$ORIGIN/../lib")
 
-# 设置项目可执行文件输出的路径
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+add_executable(test_threadpool test_threadpool.cc)
+target_include_directories(test_threadpool PRIVATE ${PROJECT_SOURCE_DIR}/src/util)
+target_link_libraries(test_threadpool PRIVATE hrpc_util pthread)
+set_target_properties(test_threadpool PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${HRPC_TEST_OUTPUT_DIR}
+    BUILD_RPATH ${HRPC_TEST_BUILD_RPATH}
+)
 
-# 设置项目编译头文件搜索路径 -I
-include_directories(${PROJECT_SOURCE_DIR}/../../lib/include/util)
-
-link_directories(${PROJECT_SOURCE_DIR}/../../lib)
-
-# set(SRC_LIST test_threadpool.cc)
-# add_executable(test_threadpool ${SRC_LIST})
-# target_link_libraries(test_threadpool hrpc_util pthread)
-
-set(SRC_LIST test_logger.cc)
-add_executable(test_logger ${SRC_LIST})
-target_link_libraries(test_logger hrpc_util pthread)
+add_executable(test_logger test_logger.cc)
+target_include_directories(test_logger PRIVATE ${PROJECT_SOURCE_DIR}/src/util)
+target_link_libraries(test_logger PRIVATE hrpc_util pthread)
+set_target_properties(test_logger PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${HRPC_TEST_OUTPUT_DIR}
+    BUILD_RPATH ${HRPC_TEST_BUILD_RPATH}
+)

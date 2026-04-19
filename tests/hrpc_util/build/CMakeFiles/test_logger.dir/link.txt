@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/test_logger.dir/test_logger.cc.o  -o ../bin/test_logger   -L/home/NfhLion/workspace/mprpc/tests/hrpc_util/../../lib  -Wl,-rpath,/home/NfhLion/workspace/mprpc/tests/hrpc_util/../../lib -lhrpc_util -lpthread 

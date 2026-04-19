@@ -1,0 +1,15 @@
+/build/
+
+/bin/*
+/bin/config/
+/bin/log/
+
+/lib/*.a
+/lib/*.so
+/lib/*.dylib
+/lib/include/
+
+/tests/hrpc_net/echo_server
+/tests/hrpc_util/bin/
+/tests/hrpc_util/build/
+/tests/protobuf/main

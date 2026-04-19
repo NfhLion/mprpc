@@ -1,15 +1,10 @@
-cmake_minimum_required(VERSION 3.0)
-project(hrpc_net_test)
+set(HRPC_TEST_OUTPUT_DIR ${PROJECT_SOURCE_DIR}/bin)
+set(HRPC_TEST_BUILD_RPATH "\$ORIGIN/../lib")
 
-# 设置项目可执行文件输出的路径
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
-
-# 设置项目编译头文件搜索路径 -I
-include_directories(${PROJECT_SOURCE_DIR}/../../lib/include/util)
-include_directories(${PROJECT_SOURCE_DIR}/../../lib/include/net)
-
-link_directories(${PROJECT_SOURCE_DIR}/../../lib)
-
-set(SRC_LIST echo_server.cc)
-add_executable(echo_server ${SRC_LIST})
-target_link_libraries(echo_server hrpc_net)
+add_executable(echo_server echo_server.cc)
+target_include_directories(echo_server PRIVATE ${PROJECT_SOURCE_DIR}/src/net ${PROJECT_SOURCE_DIR}/src/util)
+target_link_libraries(echo_server PRIVATE hrpc_net)
+set_target_properties(echo_server PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${HRPC_TEST_OUTPUT_DIR}
+    BUILD_RPATH ${HRPC_TEST_BUILD_RPATH}
+)

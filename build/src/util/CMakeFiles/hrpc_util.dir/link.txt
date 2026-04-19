@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../lib/libhrpc_util.a  CMakeFiles/hrpc_util.dir/config.cc.o CMakeFiles/hrpc_util.dir/FileUtil.cc.o CMakeFiles/hrpc_util.dir/LogFile.cc.o CMakeFiles/hrpc_util.dir/asynclogging.cc.o CMakeFiles/hrpc_util.dir/logger.cc.o CMakeFiles/hrpc_util.dir/thread.cc.o CMakeFiles/hrpc_util.dir/threadpool.cc.o
-/usr/bin/ranlib ../../../lib/libhrpc_util.a

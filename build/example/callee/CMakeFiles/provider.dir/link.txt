@@ -1,1 +1,0 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/provider.dir/userservice.cc.o CMakeFiles/provider.dir/__/publictype.pb.cc.o CMakeFiles/provider.dir/__/user.pb.cc.o  -o ../../../bin/provider   -L/home/NfhLion/workspace/mprpc/lib  -Wl,-rpath,/home/NfhLion/workspace/mprpc/lib ../../../lib/libhrpc.a -lprotobuf ../../../lib/libhrpc_net.a ../../../lib/libhrpc_util.a -lpthread -lzookeeper_mt 

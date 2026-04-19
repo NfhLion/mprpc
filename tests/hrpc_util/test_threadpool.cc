@@ -55,7 +55,6 @@ int main(int argc, char* agrv[]) {
         // std::cout << "sum = " << sum << std::endl;
     }
     std::cout << "main over" << std::endl;
-    getchar();
 
     // ThreadPool pool;
     // pool.start(4);
